@@ -11,7 +11,7 @@ export class EmployeeService {
   }
 
 
-  baseUrl = 'http://localhost:3000/employees';
+  baseUrl = 'https://angular-json-server.herokuapp.com/employees';
 
   getEmployees(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.baseUrl)
