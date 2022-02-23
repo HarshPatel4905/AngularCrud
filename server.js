@@ -16,7 +16,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/ANGULARCRUD'));
+app.use(express.static('./dist/angular-crud'));
 
 
 //PATH LOCATION STARTEGY
