@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { ResolvedEmployeeList } from './resolved-employeelist.model';
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../models/employee.model';
+import { Employee, LoggedUser } from '../models/employee.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,9 +32,12 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute,
+    private _http:HttpClient) {
     const resolvedData: Employee[] | string = this._route.snapshot.data['employeeList'];
+
     if (Array.isArray(resolvedData)) {
+
       this.employees = resolvedData;
     }else{
       this.error = resolvedData;
@@ -47,15 +51,17 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   onDeleteNotification(id: number) {
+
     const i = this.filteredEmployees.findIndex(e => e.id === id);
     if (i !== -1) {
       this.filteredEmployees.splice(i, 1);
     }
   }
 
-  ngOnInit() {
+  ngOnInit(){
 
   }
+
 
 
   // this.employeeToDisplay = this.employees[0];

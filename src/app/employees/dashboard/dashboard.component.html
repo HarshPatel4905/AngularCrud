@@ -1,0 +1,39 @@
+
+
+<div class="container">
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLink="/list">List</a>
+      </li>
+      <li>
+        <a routerLink="/edit/0">Create</a>
+      </li>
+    </ul>
+  </nav>
+<app-accordion [title]="this.people?.name">
+  <div class="col-xs-10 myPanelBody">
+    <div class="row vertical-align">
+      <div class="col-xs-8">
+        <div class="row">
+          <div class="col-xs-6">
+            Phone
+          </div>
+          <div class="col-xs-6">
+            : {{this.people?.phoneNumber}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Email
+          </div>
+          <div class="col-xs-6">
+            : {{this.people?.email}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-accordion>
+</div>
+

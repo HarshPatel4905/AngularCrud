@@ -1,3 +1,4 @@
+import { LoggedUser } from 'src/app/models/employee.model';
 import { Department } from './../models/department.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Employee } from '../models/employee.model';
@@ -16,7 +17,8 @@ export class CreateEmployeeComponent implements OnInit {
   constructor(private _employeeService: EmployeeService,
     private _router: Router,
     private _route: ActivatedRoute) { }
-  employees?: Employee;
+  employees: Employee = new Employee();
+  loggeduser?:LoggedUser;
   departments: Department[] = [
     { id: 1, name: 'Help Desk' },
     { id: 2, name: 'HR' },
@@ -28,6 +30,7 @@ export class CreateEmployeeComponent implements OnInit {
       const id = Number(parameterMap.get('id'));
       this.getEmployee(id);
     });
+    this.employees.loggedUserId = Number(localStorage.getItem('id'));
   }
 
   private getEmployee(id: number) {

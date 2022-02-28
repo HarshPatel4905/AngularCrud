@@ -11,7 +11,7 @@ export class EmployeeListResolverService implements Resolve<Employee[] | string>
     private _employeeService: EmployeeService){}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Employee[] | string>{
-      return this._employeeService.getEmployees()
+      return this._employeeService.getEmployees(Number(localStorage.getItem("id")))
               .pipe(
                 catchError((err:string) => of(err )
                 ));

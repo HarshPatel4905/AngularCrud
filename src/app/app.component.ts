@@ -8,6 +8,7 @@ import { Event,Router,NavigationStart,NavigationEnd,NavigationCancel,NavigationE
 })
 export class AppComponent {
   showLoadingIndicator = true;
+  isLogin =true;
   constructor(private _router : Router){
     this._router.events.subscribe((routerEvent: Event) =>{
       if(routerEvent instanceof NavigationStart){

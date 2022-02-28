@@ -13,9 +13,9 @@ export class EmployeeService {
 
   baseUrl = 'https://angular-json-server.herokuapp.com/employees';
 
-  getEmployees(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(this.baseUrl)
-      .pipe(catchError(this.handleError)) as any;
+  getEmployees(userId :number): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(this.baseUrl+"?loggedUserId="+userId)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(errorResponse: HttpErrorResponse) {

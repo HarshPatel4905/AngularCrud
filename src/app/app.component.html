@@ -1,5 +1,5 @@
-<div class="container">
-<nav class="navbar navbar-default">
+<!-- <div class="container">
+<nav class="navbar navbar-default" *ngIf="isLogin">
   <ul class="nav navbar-nav">
     <li>
       <a routerLink="list">List</a>
@@ -8,7 +8,7 @@
       <a routerLink="edit/0">Create</a>
     </li>
   </ul>
-</nav>
+</nav> -->
 <div *ngIf="showLoadingIndicator" class="spinner"></div>
 <router-outlet></router-outlet>
-</div>
+<!-- </div> -->

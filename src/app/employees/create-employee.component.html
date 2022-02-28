@@ -1,3 +1,14 @@
+<div class="container">
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLink="/list">List</a>
+      </li>
+      <li>
+        <a routerLink="/edit/0">Create</a>
+      </li>
+    </ul>
+  </nav>
 <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee()">
 <div class="panel panel-primary" *ngIf="employees">
   <div class="panel-heading">
@@ -124,6 +135,10 @@
          *ngIf="previewPhoto && employees!.photoPath !== '' && employees!.photoPath !== null"/>
   </div>
 
+  <div class="form-group">
+    <input id="userId" type="hidden" name="userId" [(ngModel)]="employees!.loggedUserId" class="form-control">
+  </div>
+
 
   <!------------------------------------------ PASSWORD VALIDATION CODE --------------------------------------------------->
 
@@ -166,10 +181,8 @@
   <div class="panel-footer">
     <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Save</button>
   </div>
+
 </div>
 </form>
+</div>
 
-Angular Generated Form Model : {{employeeForm.value | json }}
-<br>
-<br>
-Our Employee Model : {{employees | json}}

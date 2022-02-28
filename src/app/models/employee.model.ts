@@ -11,4 +11,12 @@ export class Employee {
   photoPath?: string;
   password?:string;
   confirmPassword?:string;
+  loggedUserId?: number;
 }
+export class LoggedUser {
+  id?: number;
+  name?: string;
+  password?: string;
+  email?: string;
+  phoneNumber?: number;
+  }

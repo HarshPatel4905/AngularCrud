@@ -1,4 +1,3 @@
-import { CanActivate } from '@angular/router';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,6 +7,8 @@ import { SelectRequiredValidatorDirective } from './shared/select-required-valid
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { EmployeeService } from './employees/employee.service';
 import {HttpClientModule} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './services/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,26 +17,33 @@ import { CreateEmployeeComponent } from './employees/create-employee.component';
 import { DisplayEmployeeComponent } from './employees/display-employee.component';
 import { CreatEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-guard.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
-import { Employee } from './models/employee.model';
 import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailsGuardService } from './employees/employee-details-guard.service';
 import { AccordionComponent } from './shared/accordion.component';
+import { LoginComponent } from './employees/login/login.component';
+import { SignupComponent } from './employees/signup/signup.component';
+import { DashboardComponent } from './employees/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'list',
     component: ListEmployeesComponent,
-    resolve: { employeeList: EmployeeListResolverService}
+    resolve: { employeeList: EmployeeListResolverService},
+    canActivate: [AuthGuard]
   },
   { path: 'edit/:id',
     component: CreateEmployeeComponent,
-    canDeactivate:[CreatEmployeeCanDeactivateGuardService]},
+    canDeactivate:[CreatEmployeeCanDeactivateGuardService],
+    canActivate: [AuthGuard]},
   { path: 'employees/:id',
     component: EmployeeDetailsComponent,
-    canActivate: [EmployeeDetailsGuardService]},
+    canActivate: [EmployeeDetailsGuardService],},
 
-  { path: '', redirectTo: '/list', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'notfound', component: PageNotFoundComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupComponent},
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]},
 
 ];
 
@@ -50,7 +58,10 @@ const appRoutes: Routes = [
     EmployeeDetailsComponent,
     EmployeeFilterPipe,
     PageNotFoundComponent,
-    AccordionComponent
+    AccordionComponent,
+    LoginComponent,
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +69,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
   ],
-  providers: [EmployeeService,CreatEmployeeCanDeactivateGuardService,EmployeeListResolverService,EmployeeDetailsGuardService],
+  providers: [EmployeeService,CreatEmployeeCanDeactivateGuardService,EmployeeListResolverService,EmployeeDetailsGuardService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
