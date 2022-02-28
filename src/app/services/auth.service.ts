@@ -8,6 +8,6 @@ export class AuthService {
   constructor() { }
 
   getAuthStatus(){
-
+    return true;
   }
 }
