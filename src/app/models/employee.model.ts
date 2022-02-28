@@ -17,6 +17,7 @@ export class LoggedUser {
   id?: number;
   name?: string;
   password?: string;
+  confirmPassword?: string;
   email?: string;
   phoneNumber?: number;
   }

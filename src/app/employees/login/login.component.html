@@ -7,14 +7,14 @@
           <h5>Feel Free to Login</h5><hr>
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="logIn()">
-          <div class="mb-3">
+          <div class="form-group mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input formControlName="email" placeholder="Enter Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          </div><br>
-          <div class="mb-3">
+          </div>
+          <div class="form-group mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input formControlName="password" placeholder="Enter Password" type="password" class="form-control" id="exampleInputPassword1">
-          </div><br>
+          </div>
           <button type="submit" class="btn btn-primary">Login</button>
         </form><br>
         New User?  <a style="color: blue; margin-top: 10px;" routerLink="/signup">Signup</a>
